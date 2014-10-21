@@ -22,51 +22,49 @@ namespace test_3_3
         /// <returns></returns> 
         private static Shape CreateShape(ShapeType shapeType)
         {
-             
-           switch (shapeType)
-           {
-            case ShapeType.Rectangle:
 
-            Console.Clear();
-            Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(" ===================================");
-            Console.WriteLine(" =           Rektangel             =");
-            Console.WriteLine(" ===================================\n");
-            Console.ResetColor();
-            Rectangle ab = new Rectangle(0, 0);
+            switch (shapeType)
+            {
+                case ShapeType.Rectangle:
 
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(" ===================================");
+                    Console.WriteLine(" =           Rektangel             =");
+                    Console.WriteLine(" ===================================\n");
+                    Console.ResetColor();
+                    double length = ReadDoubbleGreaterThanZero("Ange längden:   ");
+                    double width = ReadDoubbleGreaterThanZero("Ange brädden:   ");
 
-            return ab;
-                   
+                    return new Rectangle(length, width);
 
-            case ShapeType.Ellipse:
-           
-            Console.Clear();
-            Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.WriteLine(" ===================================");
-            Console.WriteLine(" =            Ellips               =");
-            Console.WriteLine(" ===================================\n");
-            Console.ResetColor();
-            
-            Ellipse cd = new Ellipse(0, 0);
+                case ShapeType.Ellipse:
 
-            return cd;
-               
-               
-            default:
-            throw new NotImplementedException();
-      
-           }         
+                    Console.Clear();
+                    Console.BackgroundColor = ConsoleColor.DarkGreen;
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine(" ===================================");
+                    Console.WriteLine(" =            Ellips               =");
+                    Console.WriteLine(" ===================================\n");
+                    Console.ResetColor();
+                    length = ReadDoubbleGreaterThanZero("Ange längden:   ");
+                    width = ReadDoubbleGreaterThanZero("Ange brädden:   ");
+
+                    return new Ellipse(length, width);
+
+                default:
+                    throw new NotImplementedException();
+
+            }
         }
-         
+
         /// <summary>
         /// Den uppräkningsbara typen ShapeType används för att definiera vilka typer av figurer applikationen kan hantera. 
         /// Typen används då metoden Main() anropar metoden CreateShape() för att informera vilken typ av figur som ska skapas.
         /// </summary>
-       
-        public enum ShapeType {shapeType, Ellipse, Rectangle };
+
+        public enum ShapeType { Indefinite, Ellipse, Rectangle };
 
 
         /// <summary>
@@ -79,91 +77,46 @@ namespace test_3_3
         static void Main(string[] args)
         {
             Console.Title = "Geometriska Figurer - nivå A";
-            bool exit = false;
             do
             {
+                ShapeType shapeType = ShapeType.Indefinite;
 
                 ViewMenu();
-                
-                int index;
-                try 
-                { 
-               
-                    index = int.Parse(Console.ReadLine());
-                   
-                if (index < 0 || index > 2)
+
+                switch (Console.ReadLine())
                 {
-                    throw new ArgumentException();
-                }
-                
-                }
-                catch(Exception)
-                {
-                    
-                    Console.BackgroundColor = ConsoleColor.Red;
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nFEL! Ange ett nummer mellan 0 och 2. :  ");
-                    Console.ResetColor();
+                    case "0":
+                        return;
 
-                    Console.BackgroundColor = ConsoleColor.DarkBlue;     // D R Y?
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("\nTryck tangent för att fortsätta    \n");
-                    Console.ResetColor();
-                    if (Console.ReadKey(true).Key == ConsoleKey.Enter)
-                    {
-                        continue;
-                    }
-                    return;
-                   // return;
-                }
-
-               
-                if (index == 0)
-                {
-                    Environment.Exit(index);
-                }
-
-
-                ShapeType shapeType = ShapeType.shapeType;
-                //ShapeType shapeType = new ShapeType();
-
-
-                switch (index)
-                {
-                    case 0:
-                        exit = true;
-                        break;
-                    case 1:
+                    case "1":
                         shapeType = ShapeType.Ellipse;
                         break;
-                    case 2:
+
+                    case "2":
                         shapeType = ShapeType.Rectangle;
                         break;
 
+                    default:
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\nFEL! Ange ett nummer mellan 0 och 2. :  ");
+                        Console.ResetColor();
+                        break;
                 }
 
+                if (shapeType != ShapeType.Indefinite)
+                {
+                    Shape anknown = CreateShape(shapeType);
 
-                Shape anknown = CreateShape(shapeType);
-
-
-                string line = "Ange längden:   ";
-                string brädd = "Ange brädden:   ";
-                anknown.Length = ReadDoubbleGreaterThanZero(line);
-                anknown.Width = ReadDoubbleGreaterThanZero(brädd);
-
-                ViewShapeDetail(anknown);
+                    ViewShapeDetail(anknown);
+                }
 
                 Console.BackgroundColor = ConsoleColor.DarkBlue;
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine("\nTryck tangent för att fortsätta    \n");
                 Console.ResetColor();
-                if (Console.ReadKey(true).Key == ConsoleKey.Enter)
-                {
-                    continue;
-                }
-                return;
-            } while (!exit);
-         
+            } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
         }
 
 
@@ -172,6 +125,7 @@ namespace test_3_3
         /// </summary>
         private static void ViewMenu()
         {
+            Console.Clear();
             Console.BackgroundColor = ConsoleColor.DarkGreen;
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine(" ===================================");
@@ -198,13 +152,13 @@ namespace test_3_3
         /// <returns></returns>
         private static double ReadDoubbleGreaterThanZero(string prompt)
         {
-            
+
             while (true)
             {
                 try
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.Write("\n{0}",prompt);
+                    Console.Write("\n{0}", prompt);
                     Console.ResetColor();
 
                     double dimension = double.Parse(Console.ReadLine());
@@ -239,10 +193,10 @@ namespace test_3_3
             Console.WriteLine(" ===================================\n");
             Console.ResetColor();
 
-            String.Format("{0:c}  {1:c}",shape.Area, shape.Perimeter);
+            //String.Format("{0:c}  {1:c}", shape.Area, shape.Perimeter);
             Console.WriteLine(shape);
             Console.WriteLine(" ===================================\n");
-        
+
         }
     }
-}         
+}

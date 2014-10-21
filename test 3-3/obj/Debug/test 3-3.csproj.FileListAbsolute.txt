@@ -4,3 +4,9 @@ C:\Users\dimitris\Videos\Mats Lock---C#\Introduktion. C#\C#-Exempel\test 3-3\bin
 C:\Users\dimitris\Videos\Mats Lock---C#\Introduktion. C#\C#-Exempel\test 3-3\bin\Debug\test 3-3.pdb
 C:\Users\dimitris\Videos\Mats Lock---C#\Introduktion. C#\C#-Exempel\test 3-3\obj\Debug\test 3-3.exe
 C:\Users\dimitris\Videos\Mats Lock---C#\Introduktion. C#\C#-Exempel\test 3-3\obj\Debug\test 3-3.pdb
+C:\Users\dn222em\3-3ge\test 3-3\bin\Debug\test 3-3.exe.config
+C:\Users\dn222em\3-3ge\test 3-3\obj\Debug\test 3-3.exe
+C:\Users\dn222em\3-3ge\test 3-3\obj\Debug\test 3-3.pdb
+C:\Users\dn222em\3-3ge\test 3-3\bin\Debug\test 3-3.exe
+C:\Users\dn222em\3-3ge\test 3-3\bin\Debug\test 3-3.pdb
+C:\Users\dn222em\3-3ge\test 3-3\obj\Debug\test 3-3.csprojResolveAssemblyReference.cache

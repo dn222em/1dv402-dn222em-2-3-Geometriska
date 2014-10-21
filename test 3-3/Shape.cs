@@ -29,7 +29,7 @@ namespace test_3_3
                 {
                     throw new ArgumentException();
                 }
-                _length = double.Parse(String.Format("{0:0.00}",value));
+                _length = value;
             }
         }
 
@@ -43,7 +43,7 @@ namespace test_3_3
                 {
                     throw new ArgumentException();
                 }
-                _width = double.Parse(String.Format("{0:0.00}",value));                
+                _width = value;                
             }
         }
 
@@ -67,19 +67,19 @@ namespace test_3_3
         public override string ToString()
         {
             
-            string horizontalLine = Length.ToString();
-            string verticalLine = Width.ToString();
+            //string horizontalLine = Length.ToString();
+            //string verticalLine = Width.ToString();
 
             //String.Format("{0:c}", Area);
            // String.Format("{0:c}", Perimeter);
             //string area = Area.ToString(String.Format("{0:c}",Area - Area));
             //string perimeter = Perimeter.ToString(String.Format("{0:c}",Perimeter - Perimeter));
 
-            string area = Area.ToString();
-            string perimeter = Perimeter.ToString();
+            //string area = Area.ToString();
+            //string perimeter = Perimeter.ToString();
             
           
-            return String.Format(" Längd  :{0, 10}\n Höjd   :{1, 10}\n Omkrets:{2, 10}\n Area   :{3, 10}",horizontalLine, verticalLine, perimeter, area);  //base.ToString();
+            return String.Format(" Längd  :{0, 10}\n Höjd   :{1, 10}\n Omkrets:{2, 10:f1}\n Area   :{3, 10:f1}",Length, Width, Perimeter, Area);  //base.ToString();
 
         }
    }

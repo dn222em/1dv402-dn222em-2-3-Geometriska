@@ -15,26 +15,20 @@ namespace test_3_3
         ////Publik egenskapen av typen double som ska ge en rektangels area.
         public override double Area
         {
-            
-            get{ return (double.Parse(String.Format("{0:0.00}", Width * Length)));}
+
+            get { return Width * Length; }
         }
 
         //Publik egenskapen av typen double som ska ge en rektangels omkrets.
         public override double Perimeter
         {
-            get
-            { return (double.Parse(String.Format("{0:0.00}", 2*(Width + Length))));}
+            get { return 2 * (Width + Length); }
         }
 
         //Publik konstruktor som genom anrop av basklassens konstruktor ser till att det nya objektets längd och bredd sätts. 
         public Rectangle(double length, double width)
-            :base(0d, 0d)
+            : base(length, width)
         {
-            Length = length;
-
-            Width = width;
-            
-                    
         }
     }
 }
